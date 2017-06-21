@@ -5,7 +5,7 @@ declare const window: ElectronWindow;
 export class ElectronService {
 
     private _electron: Electron.ElectronMainAndRenderer;
-    private _childProcess: any;
+    private _child_process: any;
 
     private get electron(): Electron.ElectronMainAndRenderer {
         if (!this._electron) {
@@ -14,10 +14,11 @@ export class ElectronService {
         return this._electron;
     }
 
-    private get childProcess(): any {
-        if(!this._childProcess)
-            this._childProcess = window.require ? window.require('child_process') : null;
-        return this._childProcess;
+    private get child_process(): any {
+        if (!this._child_process) {
+            this._child_process = window.require ? window.require('child_process') : null;
+        }
+        return this._child_process;
     }
 
     /**
@@ -69,6 +70,6 @@ export class ElectronService {
     }
 
     public get childProcess(): any {
-        return this.childProcess ? this.childProcess : null;
+        return this.child_process ? this.childProcess : null;
     }
 }
