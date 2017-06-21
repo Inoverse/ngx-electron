@@ -5,12 +5,19 @@ declare const window: ElectronWindow;
 export class ElectronService {
 
     private _electron: Electron.ElectronMainAndRenderer;
+    private _childProcess: any;
 
     private get electron(): Electron.ElectronMainAndRenderer {
         if (!this._electron) {
             this._electron = window.require ? window.require('electron') : null;
         }
         return this._electron;
+    }
+
+    private get childProcess(): any {
+        if(!this._childProcess)
+            this._childProcess = window.require ? window.require('child_process') : null;
+        return this._childProcess;
     }
 
     /**
@@ -59,5 +66,9 @@ export class ElectronService {
 
     public get shell(): Electron.Shell {
         return this.electron ? this.electron.shell : null;
+    }
+
+    public get childProcess(): any {
+        return this.childProcess ? this.childProcess : null;
     }
 }
